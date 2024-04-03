@@ -1,8 +1,8 @@
 function sum(arr = []) {
-  return arr.reduce((acc, numbre) => acc + numbre, 0);
+  return arr.reduce((acc, number) => acc + number, 0);
 }
 
-function sumV2(arr = []) {
+function sumV2(...arr) {
   return arr.reduce((acc, numbre) => acc + numbre, 0);
 }
 
