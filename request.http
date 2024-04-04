@@ -1,0 +1,21 @@
+@BASE_URL= http://localhost:3000/api
+
+### Retreives all tasks
+GET {{BASE_URL}}/tasks
+
+### Retreives a single task
+@taskId = 3
+GET {{BASE_URL}}/tasks/{{taskId}}
+
+### Delete a task
+DELETE {{BASE_URL}}/tasks/{{taskId}}
+
+### Create a task
+POST {{BASE_URL}}/tasks
+content-type: application/json
+
+{
+    "id":23,
+    "title":"Manger",
+    "description":"Manger"
+}
