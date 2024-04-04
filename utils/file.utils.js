@@ -10,10 +10,7 @@ async function loadFile(filename) {
 
 async function writeToFile(filename, data) {
   try {
-    return await fs.writeFile(
-      path.join(rootDir, filename),
-      JSON.stringify(data)
-    );
+    return await fs.writeFile(filename, JSON.stringify(data));
   } catch (e) {
     throw e;
   }
