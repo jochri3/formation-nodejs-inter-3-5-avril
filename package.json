@@ -2,7 +2,7 @@
   "name": "js-3-au-5-avril-2024",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "start:dev": "nodemon"
   },

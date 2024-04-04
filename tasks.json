@@ -1,5 +1,27 @@
 [
   {
+    "id": 1,
+    "title": "Conception de l'architecture",
+    "description": "Définir l'architecture globale du système",
+    "start_date": "2023-06-01 00:00:00.000000 +00:00",
+    "end_date": "2023-06-15 00:00:00.000000 +00:00",
+    "user_id": 1,
+    "parent_id": null,
+    "assignee_id": null,
+    "status": "todo"
+  },
+  {
+    "id": 2,
+    "title": "Développement de l'API REST",
+    "description": "Implémenter les points d'endpoint de l'API REST",
+    "start_date": "2023-06-16 00:00:00.000000 +00:00",
+    "end_date": "2023-07-15 00:00:00.000000 +00:00",
+    "user_id": 2,
+    "parent_id": null,
+    "assignee_id": null,
+    "status": "todo"
+  },
+  {
     "id": 3,
     "title": "Conception de la base de données",
     "description": "Concevoir le schéma de la base de données",
@@ -38,7 +60,7 @@
     "description": "Configurer l'environnement de production",
     "start_date": "2023-06-15 00:00:00.000000 +00:00",
     "end_date": "2023-06-30 00:00:00.000000 +00:00",
-    "user_id": null,
+    "user_id": 1,
     "parent_id": null,
     "assignee_id": null,
     "status": "todo"
@@ -93,7 +115,7 @@
     "description": "Concevoir l'expérience utilisateur",
     "start_date": "2023-06-15 00:00:00.000000 +00:00",
     "end_date": "2023-06-30 00:00:00.000000 +00:00",
-    "user_id": null,
+    "user_id": 1,
     "parent_id": null,
     "assignee_id": null,
     "status": "in_progress"
@@ -159,7 +181,7 @@
     "description": "Identifier et définir les personas utilisateurs",
     "start_date": "2023-06-15 00:00:00.000000 +00:00",
     "end_date": "2023-06-20 00:00:00.000000 +00:00",
-    "user_id": null,
+    "user_id": 1,
     "parent_id": 11,
     "assignee_id": null,
     "status": "in_progress"
@@ -170,7 +192,7 @@
     "description": "Créer les wireframes pour les principales interfaces utilisateur",
     "start_date": "2023-06-21 00:00:00.000000 +00:00",
     "end_date": "2023-06-30 00:00:00.000000 +00:00",
-    "user_id": null,
+    "user_id": 1,
     "parent_id": 11,
     "assignee_id": null,
     "status": "todo"
