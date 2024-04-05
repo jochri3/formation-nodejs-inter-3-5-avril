@@ -1,7 +1,15 @@
 @BASE_URL= http://localhost:3000/api
 
+
+### Bad route
+GET {{BASE_URL}}
+
 ### Retreives all tasks
 GET {{BASE_URL}}/tasks
+
+### Retreives all tasks
+GET {{BASE_URL}}/tasks?page=2&limit=4&search=d&sort[title]=title&sort[asc]=asc
+
 
 ### Retreives a single task
 @taskId = 56

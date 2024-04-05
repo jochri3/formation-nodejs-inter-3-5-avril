@@ -1,6 +1,10 @@
 const express = require("express");
 const tasksRouter = require("./tasks/tasks.routes");
-const { rateLimiter, errorMiddleware } = require("./middlewares");
+const {
+  rateLimiter,
+  errorMiddleware,
+  handleUnexpectedRoute,
+} = require("./middlewares");
 const cors = require("cors");
 
 const app = express();
@@ -16,5 +20,6 @@ app.use(express.json());
 app.use(rateLimiter);
 app.use("/api/tasks", tasksRouter);
 app.use(errorMiddleware);
+app.use(handleUnexpectedRoute);
 
 module.exports = app;

@@ -2,9 +2,24 @@ const tasksService = require("./tasks.service");
 
 // let tasksNextId = 1;
 
-const getAllTasks = async (_, res) => {
-  const tasks = await tasksService.findAllTasks();
-  res.status(200).json(tasks);
+const getAllTasks = async (req, res) => {
+  const { page = 1, limit = 4, search = "", sort = {} } = req.query;
+
+  const parsedPage = parseInt(page);
+  const parsedLimit = parseInt(limit);
+  const parsedSort = {
+    field: sort.field || "id",
+    order: sort.order || "asc",
+  };
+
+  const { tasks, totalCount, totalPages } = await tasksService.findAllTasks(
+    parsedPage,
+    parsedLimit,
+    search,
+    parsedSort
+  );
+
+  res.status(200).json({ tasks, totalCount, totalPages });
 };
 
 const getOneTask = async (req, res) => {

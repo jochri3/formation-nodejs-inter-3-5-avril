@@ -9,8 +9,34 @@ const defaultReturnFields = {
   description: true,
 };
 
-const findAllTasks = () => {
-  return prisma.tasks.findMany();
+const findAllTasks = async (
+  page = 1,
+  limit = 4,
+  search = "",
+  sort = { field: "id", order: "asc" }
+) => {
+  const offset = (page - 1) * limit;
+
+  const where = {
+    OR: [
+      { title: { contains: search, mode: "insensitive" } },
+      { description: { contains: search, mode: "insensitive" } },
+    ],
+  };
+
+  const orderBy = { [sort.field]: sort.order };
+
+  const tasks = await prisma.tasks.findMany({
+    skip: offset,
+    take: limit,
+    where,
+    orderBy,
+  });
+
+  const totalCount = await prisma.tasks.count({ where });
+  const totalPages = Math.ceil(totalCount / limit);
+
+  return { tasks, totalCount, totalPages };
 };
 
 const findOneTask = async (id) => {
