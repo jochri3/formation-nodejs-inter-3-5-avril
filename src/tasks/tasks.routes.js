@@ -6,7 +6,8 @@ const TasksController = require("./tasks.controllers");
 
 tasksRouter.get("/", TasksController.getAllTasks);
 tasksRouter.get("/:id", TasksController.getOneTask);
-// tasksRouter.post("/", TasksController.createTask);
-// tasksRouter.delete("/:id", TasksController.deleteTask);
+tasksRouter.post("/", TasksController.createTask);
+tasksRouter.patch("/:id", TasksController.updateTask);
+tasksRouter.delete("/:id", TasksController.deleteTask);
 
 module.exports = tasksRouter;
