@@ -1,6 +1,10 @@
 const errorMiddleware = (err, _, res, next) => {
   console.log(err.message);
-  res.status(500).json({ error: "Tout va très mal :(" });
+  res.status(err.statusCode).json({ error: err.message });
 };
 
 module.exports = errorMiddleware;
+
+// - Bad request
+// - conflict error
+// - unprocessable entity
