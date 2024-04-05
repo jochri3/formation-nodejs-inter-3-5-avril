@@ -1,42 +1,25 @@
-// const { generateUniqueId } = require("../utils/generate-unique-id.util");
 const tasksService = require("./tasks.service");
-const _ = require("lodash");
 
 // let tasksNextId = 1;
 
-const getAllTasks = async (req, res) => {
-  try {
-    const tasks = await tasksService.findAllTasks();
-    res.status(200).json(tasks);
-  } catch (e) {
-    console.error(e);
-    res.status(500).json({ error: "Internal server error" });
-  }
+const getAllTasks = async (_, res) => {
+  const tasks = await tasksService.findAllTasks();
+  res.status(200).json(tasks);
 };
 
 const getOneTask = async (req, res) => {
-  try {
-    const id = parseInt(req.params.id) || null;
-    if (!id) {
-      return res.status(400).json({ error: "Invalid task ID" });
-    }
-    const task = await tasksService.findOneTask(id);
-    return res.status(200).json(task);
-  } catch (e) {
-    console.error(e);
-    res.status(500).json({ error: "Internal server error" });
+  const id = parseInt(req.params.id) || null;
+  if (!id) {
+    return res.status(400).json({ error: "Invalid task ID" });
   }
+  const task = await tasksService.findOneTask(id);
+  return res.status(200).json(task);
 };
 
 const createTask = async (req, res) => {
-  try {
-    const taskData = req.body;
-    const task = await tasksService.createTask(taskData);
-    res.status(201).send(task);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "Internal server error" });
-  }
+  const taskData = req.body;
+  const task = await tasksService.createTask(taskData);
+  res.status(201).send(task);
 };
 
 const updateTask = async (req, res) => {

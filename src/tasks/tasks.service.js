@@ -1,6 +1,13 @@
 const { PrismaClient } = require("@prisma/client");
+const NotFoundError = require("../errors/not-found.error");
 
 const prisma = new PrismaClient();
+
+const defaultReturnFields = {
+  id: true,
+  title: true,
+  description: true,
+};
 
 const findAllTasks = () => {
   return prisma.tasks.findMany();
@@ -9,15 +16,24 @@ const findAllTasks = () => {
 const findOneTask = async (id) => {
   const task = await prisma.tasks.findUnique({ where: { id } });
   if (!task) {
-    throw new Error("Task not found");
+    throw new NotFoundError("Task not found");
   }
   return task;
 };
 
+// Usage of defaultReturnFields objects
+
+// const createTask = (data) => {
+//   return prisma.tasks.create({
+//     data,
+//     select: { ...defaultReturnFields, description: true },
+//   });
+// };
 const createTask = (data) => {
   return prisma.tasks.create({
     data,
     select: {
+      id: true,
       title: true,
       description: true,
     },
@@ -29,15 +45,12 @@ const updateTask = async (id, data) => {
     where: { id },
   });
   if (!task) {
-    throw new NotFoundError("Task not found");
+    throw new Error("Task not found");
   }
   return prisma.tasks.update({
     where: { id },
     data,
-    select: {
-      title: true,
-      description: true,
-    },
+    select: defaultReturnFields,
   });
 };
 
@@ -46,7 +59,7 @@ const deleteTask = async (id) => {
     where: { id },
   });
   if (!task) {
-    throw new NotFoundError("Task not found");
+    throw new Error("Task not found");
   }
   return prisma.tasks.delete({
     where: { id },
