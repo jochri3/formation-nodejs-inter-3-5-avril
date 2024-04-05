@@ -1,19 +1,22 @@
 const express = require("express");
-const errorWrapper = require("../middlewares/error-wrapper.middleware");
+const TasksController = require("./tasks.controllers");
+const { createTaskSchema, updateTaskSchema } = require("./schemas");
+const { validateBodyMiddleware, errorWrapper } = require("../middlewares");
 
 const tasksRouter = express.Router();
-
-const TasksController = require("./tasks.controllers");
-const validateTaskMiddleware = require("./validation-task.middleware");
 
 tasksRouter.get("/", errorWrapper(TasksController.getAllTasks));
 tasksRouter.get("/:id", errorWrapper(TasksController.getOneTask));
 tasksRouter.post(
   "/",
-  validateTaskMiddleware,
+  validateBodyMiddleware(createTaskSchema),
   errorWrapper(TasksController.createTask)
 );
-tasksRouter.patch("/:id", errorWrapper(TasksController.updateTask));
+tasksRouter.patch(
+  "/:id",
+  validateBodyMiddleware(updateTaskSchema),
+  errorWrapper(TasksController.updateTask)
+);
 tasksRouter.delete("/:id", errorWrapper(TasksController.deleteTask));
 
 module.exports = tasksRouter;

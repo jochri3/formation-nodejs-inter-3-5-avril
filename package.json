@@ -12,6 +12,7 @@
   "dependencies": {
     "@prisma/client": "^5.12.1",
     "express": "^4.19.2",
+    "joi": "^17.12.3",
     "lodash": "^4.17.21",
     "prisma": "^5.12.1"
   },
